@@ -1,0 +1,112 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background: #333;
+    height: 50px;
+    align-items: center;
+    padding: 0 20px;
+    color: white;
+  
+    .navbarLeft,
+    .navbarRight {
+      display: flex;
+      gap: 15px;
+    }
+      a {
+        color: white;
+      }
+  }
+  
+  .content {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+  
+    .title {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+  
+    .form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      
+      .inputField {
+        display: flex;
+        flex-direction: column;
+  
+        label {
+          font-weight: bold;
+        }
+  
+        input {
+          padding: 10px;
+          margin-top: 5px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+        }
+      }
+  
+      .submitButton {
+        padding: 12px;
+        background-color: green;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    }
+  
+    .socialLogin {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  
+      h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+  
+      .socialButtons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+  
+      .socialButton {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+        cursor: pointer;
+  
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,532 @@
+.newsFeedContainer {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.post {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+  padding: 15px 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.post:hover {
+  transform: translateY(-5px);
+}
+
+/* --------- Основной header поста ---------- */
+.postHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.userPhoto {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.postInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1;
+}
+.userName {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+.postDate {
+  font-size: 13px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.postContent {
+  margin-bottom: 15px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Картинка к посту */
+.postImage {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  max-height: 320px;
+  margin: 0 auto 15px auto;
+  border-radius: 10px;
+  background: #fafafa;
+  object-fit: contain;
+  box-shadow: 0 2px 12px #0001;
+}
+
+/* ----------- Действия ----------- */
+.postActions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.likeButton,
+.dislikeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #555;
+  transition: 0.2s;
+}
+.likeButton:hover {
+  color: #007bff;
+}
+.dislikeButton:hover {
+  color: #dc3545;
+}
+
+/* --- КОММЕНТАРИИ --- */
+.commentsSection {
+  margin-top: 18px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.comment {
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.commentHeader {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 3px;
+}
+
+.commentAuthorPhoto {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 8px;
+  object-fit: cover;
+}
+
+.commentInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 32px; /* высота аватарки */
+  line-height: 1;
+}
+
+.commentAuthor {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.commentDate {
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.commentText {
+  font-size: 14px;
+  margin-left: 40px;
+  display: block;
+}
+
+/* Кнопка "Посмотреть все комментарии" */
+.showAllCommentsBtn {
+  background: #f2f2f2;
+  color: #660099;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  margin: 6px 0 0 0;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+.showAllCommentsBtn:hover {
+  background: #ece0f7;
+}
+
+/* --- МОДАЛКА --- */
+.modalOverlay {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  background: rgba(0,0,0,0.32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalContent {
+  background: #fff;
+  border-radius: 10px;
+  max-width: 440px;
+  width: 95vw;
+  max-height: 80vh;
+  padding: 0 0 14px 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 18px 8px 18px;
+  border-bottom: 1px solid #ececec;
+}
+.modalHeader h3 {
+  margin: 0;
+  font-size: 18px;
+}
+.modalClose {
+  background: none;
+  border: none;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  color: #888;
+  margin-left: 10px;
+  transition: color 0.18s;
+}
+.modalClose:hover {
+  color: #d00;
+}
+.allCommentsList {
+  padding: 10px 18px 0 18px;
+  overflow-y: auto;
+  max-height: 55vh;
+}
+
+/* --- Форма для комментария --- */
+.commentForm {
+  display: flex;
+  margin-top: 14px;
+  gap: 8px;
+}
+.commentForm input {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 14px;
+}
+.commentForm button {
+  background: #ff2f36;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.22s;
+}
+.commentForm button:hover {
+  background: #660099;
+}
+
+/* --- Мобилка --- */
+@media (max-width: 768px) {
+  .post {
+    padding: 10px 8px;
+  }
+  .userPhoto {
+    width: 40px;
+    height: 40px;
+  }
+  .postContent {
+    font-size: 14px;
+  }
+  .modalContent {
+    max-width: 99vw;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+// .newsFeedContainer {
+//   max-width: 700px;
+//   margin: 0 auto;
+//   padding: 20px;
+// }
+
+// .post {
+//   background-color: #fff;
+//   border-radius: 12px;
+//   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+//   margin-bottom: 20px;
+//   padding: 15px 20px;
+//   transition: all 0.3s ease-in-out;
+// }
+
+// .post:hover {
+//   transform: translateY(-5px);
+// }
+
+// .postHeader {
+//   display: flex;
+//   align-items: center;
+//   margin-bottom: 15px;
+// }
+
+// .userPhoto {
+//   width: 50px;
+//   height: 50px;
+//   border-radius: 50%;
+//   margin-right: 10px;
+// }
+
+// .userName {
+//   font-weight: bold;
+//   font-size: 16px;
+// }
+
+// .postTime {
+//   font-size: 12px;
+//   color: #888;
+// }
+
+// .postContent {
+//   margin-bottom: 15px;
+//   font-size: 15px;
+//   line-height: 1.5;
+// }
+
+// .postImage {
+//   display: block;
+//   max-width: 100%;
+//   width: auto;
+//   height: auto;
+//   max-height: 320px; /* или сколько хочешь */
+//   margin: 0 auto 15px auto;
+//   border-radius: 10px;
+//   background: #fafafa;
+//   object-fit: contain; /* не обрезает картинку, а вписывает полностью */
+//   box-shadow: 0 2px 12px #0001;
+// }
+
+
+// .postActions {
+//   display: flex;
+//   justify-content: space-between;
+// }
+
+// .likeButton,
+// .dislikeButton {
+//   background: none;
+//   border: none;
+//   cursor: pointer;
+//   font-size: 14px;
+//   color: #555;
+//   transition: 0.2s;
+// }
+
+// .likeButton:hover {
+//   color: #007bff;
+// }
+
+// .dislikeButton:hover {
+//   color: #dc3545;
+// }
+
+// /* --- КОММЕНТАРИИ --- */
+// .commentsSection {
+//   margin-top: 18px;
+//   padding-top: 10px;
+//   border-top: 1px solid #eee;
+// }
+
+// .comment {
+//   margin-bottom: 10px;
+//   padding-bottom: 6px;
+//   border-bottom: 1px solid #f1f1f1;
+// }
+
+// .commentHeader {
+//   display: flex;
+//   align-items: flex-start;
+//   margin-bottom: 3px;
+// }
+
+// .commentAuthorPhoto {
+//   width: 32px;
+//   height: 32px;
+//   border-radius: 50%;
+//   margin-right: 8px;
+//   object-fit: cover;
+// }
+
+// .commentInfo {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   height: 32px; /* высота аватарки */
+//   line-height: 1;
+// }
+
+// .commentAuthor {
+//   font-weight: 600;
+//   font-size: 14px;
+//   margin-bottom: 2px;
+// }
+
+// .commentDate {
+//   font-size: 12px;
+//   color: #888;
+//   margin-top: 2px;
+// }
+
+// .commentText {
+//   font-size: 14px;
+//   margin-left: 40px; /* смещение текста на уровень после аватара */
+//   display: block;
+// }
+
+// /* Кнопка "Посмотреть все комментарии" */
+// .showAllCommentsBtn {
+//   background: #f2f2f2;
+//   color: #660099;
+//   border: none;
+//   border-radius: 6px;
+//   padding: 6px 14px;
+//   margin: 6px 0 0 0;
+//   cursor: pointer;
+//   font-weight: 500;
+//   font-size: 13px;
+//   transition: background 0.2s;
+// }
+// .showAllCommentsBtn:hover {
+//   background: #ece0f7;
+// }
+
+// /* --- МОДАЛКА --- */
+// .modalOverlay {
+//   position: fixed;
+//   z-index: 100;
+//   inset: 0;
+//   background: rgba(0,0,0,0.32);
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// .modalContent {
+//   background: #fff;
+//   border-radius: 10px;
+//   max-width: 440px;
+//   width: 95vw;
+//   max-height: 80vh;
+//   padding: 0 0 14px 0;
+//   display: flex;
+//   flex-direction: column;
+//   box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+// }
+
+// .modalHeader {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   padding: 18px 18px 8px 18px;
+//   border-bottom: 1px solid #ececec;
+// }
+
+// .modalHeader h3 {
+//   margin: 0;
+//   font-size: 18px;
+// }
+
+// .modalClose {
+//   background: none;
+//   border: none;
+//   font-size: 26px;
+//   line-height: 1;
+//   cursor: pointer;
+//   color: #888;
+//   margin-left: 10px;
+//   transition: color 0.18s;
+// }
+// .modalClose:hover {
+//   color: #d00;
+// }
+
+// .allCommentsList {
+//   padding: 10px 18px 0 18px;
+//   overflow-y: auto;
+//   max-height: 55vh;
+// }
+
+// /* --- Форма для комментария --- */
+// .commentForm {
+//   display: flex;
+//   margin-top: 14px;
+//   gap: 8px;
+// }
+// .commentForm input {
+//   flex: 1;
+//   border: 1px solid #ccc;
+//   border-radius: 6px;
+//   padding: 6px 8px;
+//   font-size: 14px;
+// }
+// .commentForm button {
+//   background: #ff2f36;
+//   color: #fff;
+//   border: none;
+//   border-radius: 6px;
+//   padding: 6px 16px;
+//   font-size: 14px;
+//   cursor: pointer;
+//   font-weight: 600;
+//   transition: background 0.22s;
+// }
+// .commentForm button:hover {
+//   background: #660099;
+// }
+
+// /* --- Мобилка --- */
+// @media (max-width: 768px) {
+//   .post {
+//     padding: 10px 8px;
+//   }
+
+//   .userPhoto {
+//     width: 40px;
+//     height: 40px;
+//   }
+
+//   .postContent {
+//     font-size: 14px;
+//   }
+//   .modalContent {
+//     max-width: 99vw;
+//   }
+// }
+
+
+
+
+
+
+
+
+
+

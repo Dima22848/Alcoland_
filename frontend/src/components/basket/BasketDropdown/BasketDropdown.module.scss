@@ -1,0 +1,168 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+  z-index: 100;
+}
+
+.basketButton {
+  background: #262626;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dropdownContent {
+  position: absolute;
+  right: 0;
+  margin-top: 8px;
+  background: #fff;
+  min-width: 320px;
+  box-shadow: 0 2px 16px #0002;
+  border-radius: 14px;
+  padding: 20px;
+  transition: all 0.2s;
+}
+
+.title {
+  margin: 0 0 10px 0;
+  font-size: 19px;
+  font-weight: 700;
+  color: #2e2e2e;
+  text-align: center;
+}
+
+.empty {
+  text-align: center;
+  color: #bbb;
+  font-size: 16px;
+  margin: 24px 0;
+}
+
+.items {
+  margin-bottom: 14px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.img {
+  width: 44px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 7px;
+  background: #eee;
+  margin-right: 12px;
+  border: 1px solid #e7e7e7;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #292929;
+  margin-bottom: 3px;
+}
+
+.qty {
+  font-size: 14px;
+  color: #444;
+}
+
+.price {
+  font-size: 15px;
+  font-weight: 600;
+  color: #660099;
+}
+
+.showAll {
+  width: 100%;
+  background: #eee;
+  border: none;
+  padding: 8px 0;
+  border-radius: 7px;
+  color: #333;
+  font-size: 15px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+  &:hover {
+    background: #e6dbfa;
+    color: #660099;
+  }
+}
+
+.total {
+  text-align: center;
+  font-size: 16px;
+  margin: 12px 0 10px 0;
+}
+
+.payBtn {
+  width: 100%;
+  background: #31b23a;
+  color: #fff;
+  border: none;
+  padding: 10px 0;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background 0.16s;
+  &:hover {
+    background: #26982c;
+  }
+}
+
+.qtyBtn, .removeBtn {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 50%;
+  cursor: pointer;
+  background: #f3f4f6;
+  color: #1f2937;
+  margin: 0 4px;
+  box-shadow: 0 1px 3px #0001;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+
+  &:hover:not(:disabled) {
+    background: #e5e7eb;
+    box-shadow: 0 2px 8px #0001;
+  }
+  &:active:not(:disabled) {
+    background: #d1d5db;
+  }
+}
+
+.removeBtn {
+  background: #fee2e2;
+  color: #dc2626;
+  margin-left: 6px;
+  &:hover:not(:disabled) {
+    background: #fecaca;
+    color: #b91c1c;
+  }
+  &:active:not(:disabled) {
+    background: #fca5a5;
+  }
+}

@@ -1,0 +1,130 @@
+.historyContainer {
+  padding: 32px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.purchaseBlock {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px #0001;
+  padding: 28px;
+  border: 1px solid #e5e5e5;
+  margin-bottom: 32px;
+  transition: box-shadow 0.18s;
+  &:hover {
+    box-shadow: 0 8px 28px #0002;
+  }
+}
+
+.orderHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  font-size: 17px;
+
+  .orderId {
+    font-weight: 600;
+    font-size: 19px;
+    margin-right: 16px;
+    color: #222;
+  }
+
+  .orderDate {
+    color: #8c8c8c;
+    font-size: 15px;
+  }
+
+  .orderStatus {
+    margin-left: auto;
+    background: #f3f7ff;
+    color: #1f6feb;
+    padding: 4px 14px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 14px;
+  }
+}
+
+.purchaseItems {
+  margin-bottom: 10px;
+}
+
+.purchaseItem {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 14px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 9px 12px;
+}
+
+.alcoholImage {
+  width: 44px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #f3f3f3;
+  border: 1px solid #e5e5e5;
+}
+
+.alcoholDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.alcoholName {
+  font-weight: 500;
+  font-size: 16px;
+  color: #232323;
+}
+
+.itemInfo {
+  font-size: 14px;
+  color: #6d6d6d;
+}
+
+.itemSum {
+  font-weight: 600;
+  font-size: 15px;
+  color: #1f6feb;
+  min-width: 80px;
+  text-align: right;
+}
+
+.totalAmount {
+  text-align: right;
+  margin-top: 16px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #1f6feb;
+}
+
+@media (max-width: 600px) {
+  .historyContainer {
+    padding: 12px;
+  }
+  .purchaseBlock {
+    padding: 14px;
+  }
+  .alcoholImage {
+    width: 36px;
+    height: 48px;
+  }
+  .purchaseItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    padding: 7px 5px;
+  }
+}

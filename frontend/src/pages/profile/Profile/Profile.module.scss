@@ -1,0 +1,47 @@
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Отступ между блоками */
+  }
+  
+  /* ==== Фото + Информация о профиле ==== */
+  .profileDetails {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .profileImage {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .profileText {
+    font-size: 16px;
+  }
+  
+  /* ==== Новостная лента ==== */
+  .newsFeed {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .newsFeed h2 {
+    margin-bottom: 10px;
+  }
+  
+  .newsItem {
+    background: white;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+
+
+
+

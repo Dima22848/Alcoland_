@@ -1,0 +1,240 @@
+.chatContainer {
+  display: flex;
+  height: 100vh;
+  background: #f9f9f9;
+  overflow: hidden;
+}
+
+.chatList {
+  width: 30%;
+  padding: 20px;
+  background: white;
+  overflow-y: auto;
+  border-right: 1px solid #ddd;
+}
+
+.chatContent {
+  width: 70%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.controlsRow {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Отступ между поиском и кнопкой */
+  margin-bottom: 20px;
+}
+
+.searchBar {
+  flex: 1 1 0%;
+  padding: 8px 10px;
+  font-size: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  background: #f7f7f7;
+  margin-right: 0;
+}
+
+.createGroupBtn {
+  padding: 8px 18px;
+  background: #f91e1e;
+  color: #fff;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+  margin-left: auto;
+
+  &:hover {
+    background: #d90a0a;
+  }
+}
+
+.dialogsList {
+  margin-top: 8px;
+}
+
+.chatItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  padding: 6px 4px;
+  border-radius: 8px;
+  transition: background 0.15s;
+
+  &:hover {
+    background: #f2f2f2;
+  }
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #eee;
+}
+
+.chatText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 180px;
+
+  strong {
+    font-size: 15px;
+    color: #000;
+    margin-bottom: 4px;
+  }
+
+  .lastMessage {
+    font-size: 13px;
+    color: #777;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+// .chatContainer {
+//   display: flex;
+//   height: 100vh;
+//   background: #f9f9f9;
+//   overflow: hidden;
+// }
+
+// .chatList {
+//   width: 30%;
+//   padding: 20px;
+//   background: white;
+//   overflow-y: auto;
+//   border-right: 1px solid #ddd;
+// }
+
+// .chatContent {
+//   width: 70%;
+//   height: 100vh; /* заменить max-height */
+//   display: flex;
+//   flex-direction: column;
+//   overflow: hidden;
+// }
+
+
+
+// .chatItem {
+//   display: flex;
+//   align-items: center;
+//   gap: 12px;
+//   margin-bottom: 16px;
+// }
+
+// .avatar {
+//   width: 50px;
+//   height: 50px;
+//   object-fit: cover;
+//   border-radius: 8px;
+// }
+
+// .chatText {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   max-width: 180px;
+
+//   strong {
+//     font-size: 15px;
+//     color: #000;
+//     margin-bottom: 4px;
+//   }
+
+//   .lastMessage {
+//     font-size: 13px;
+//     color: #777;
+//     white-space: nowrap;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+// .chatContent {
+//   width: 70%;
+//   height: 100vh; /* фиксированная высота окна */
+//   display: flex;
+//   flex-direction: column;
+//   overflow: hidden;
+// }
+
+
+
+// .chatList {
+//   width: 30%;
+//   background: white;
+//   padding: 20px;
+//   border-right: 1px solid #ddd;
+//   overflow-y: auto;
+// }
+
+// .searchBar {
+//   width: 100%;
+//   padding: 8px;
+//   margin-bottom: 10px;
+//   border: 1px solid #ddd;
+//   border-radius: 6px;
+// }
+
+// .dialogsList {
+//   max-height: 80vh;
+//   overflow-y: auto;
+// }
+
+// .dialogItem {
+//   display: flex;
+//   align-items: center;
+//   padding: 10px;
+//   cursor: pointer;
+//   border-radius: 8px;
+//   transition: background 0.2s;
+// }
+
+// .dialogItem:hover {
+//   background: #f0f0f0;
+// }
+
+// .avatar {
+//   width: 50px;
+//   height: 50px;
+//   border-radius: 50%;
+//   margin-right: 10px;
+// }
+
+// .chatContent {
+//   width: 70%;
+//   padding: 20px;
+//   overflow-y: auto;
+// }

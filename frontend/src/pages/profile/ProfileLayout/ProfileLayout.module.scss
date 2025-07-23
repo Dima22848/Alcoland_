@@ -1,0 +1,72 @@
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr; /* Навбар фиксированный, остальное растягивается */
+    grid-template-columns: 1fr;
+    height: 100vh;
+  }
+  
+  /* ==== НАВБАР ==== */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #333;
+    color: white;
+  }
+  
+  .navbarLeft a {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+  }
+  
+  .navbarLeft a:hover {
+    text-decoration: underline;
+  }
+  
+  /* ==== ОСНОВНАЯ ЧАСТЬ ==== */
+  .mainContent {
+    display: grid;
+    grid-template-columns: 1fr 4fr; /* 1/5 на сайдбар, 4/5 на контент */
+    grid-template-rows: auto 1fr; /* Контент растягивается */
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  /* ==== САЙДБАР ==== */
+  .sidebar {
+    grid-column: 1 / 2;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .sidebar a:hover {
+    color: #007bff;
+  }
+  
+  /* ==== КОНТЕНТ ПРОФИЛЯ ==== */
+  .profileContent {
+    grid-column: 2 / 3;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  

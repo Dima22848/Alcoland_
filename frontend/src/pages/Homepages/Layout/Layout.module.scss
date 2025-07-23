@@ -1,0 +1,274 @@
+.full {
+    display: grid;
+    grid-template-areas:
+      "header"
+      "filter-field"
+      "content"
+      "pagination"
+      "recommendations";
+    grid-template-rows: auto auto 1fr auto auto;
+    height: 100vh;
+    gap: 10px;
+  }
+  
+  // Шапка
+  .header {
+    grid-area: header;
+    background: #333;
+    color: white;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  
+    .navbarLeft,
+    .navbarRight {
+      display: flex;
+      gap: 15px;
+      cursor: pointer;
+    }
+      a {
+        color: white;
+      }
+  }
+  
+  // Выпадающее окно корзины
+  .cartDropdown {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 300px;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  
+    .cartItem {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+  
+    .quantityControl {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  
+    .payButton {
+      width: 100%;
+      padding: 10px;
+      background: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  }
+  
+  // Выпадающее меню профиля
+  .profileDropdown {
+    position: absolute;
+    top: 60px;
+    right: 80px;
+    width: 150px;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  
+    a,
+    button {
+      color: orange;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      padding: 5px 0;
+      width: 100%;
+    }
+  
+    .logoutLink {
+      color: red;
+      text-decoration: underline;
+    }
+  }
+  
+  // Фильтры
+  .filterField {
+    grid-area: filter-field;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: blue;
+    height: 60px;
+    padding: 0 20px;
+  
+    .catalog {
+      position: relative;
+    }
+  
+    .catalogButton {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 5px 10px;
+      cursor: pointer;
+      color: black;
+    }
+  
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border: 1px solid #ccc;
+      display: flex;
+      flex-direction: column;
+      width: 150px;
+    }
+  
+    .dropdown a {
+      padding: 5px 10px;
+      text-decoration: none;
+      color: black;
+    }
+  
+    .dropdown a:hover {
+      background: #f0f0f0;
+    }
+  
+    .searchField {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+  
+    .searchField input {
+      padding: 5px 10px;
+      width: 80%;
+      border: 1px solid #ccc;
+    }
+  
+    .filterFieldRight {
+      display: flex;
+      justify-content: flex-end;
+      width: 200px;
+    }
+  
+    .filterFieldRight select {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+    }
+  }
+  
+  // Контент
+  .content {
+    grid-area: content;
+    display: flex;
+    gap: 10px;
+  
+    .filterSidebar {
+      background: green;
+      flex: 1;
+    }
+  
+    .main {
+      background: purple;
+      flex: 3;
+      display: flex; /* Заменяем grid на flex */
+      justify-content: center; /* Выравниваем по центру */
+      align-items: flex-start; /* Выравниваем сверху */
+      padding: 20px; /* Добавляем отступы */
+      width: 100%; /* Делаем блок на всю ширину */
+    }
+    
+    
+  }
+  
+  // Пагинация
+  .pagination {
+    grid-area: pagination;
+    background: orange;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    .pageButton {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 5px 10px;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+  
+    .pageButton:hover {
+      background: #f0f0f0;
+    }
+  
+    .activePage {
+      background: green;
+      color: white;
+    }
+  }
+  
+  // Рекомендации
+  .recommendations {
+    grid-area: recommendations;
+    background: lightgray;
+    padding: 20px;
+    text-align: center;
+  
+    .recommendItems {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+  
+    .recommendItem {
+      background: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  // Компоненты алкоголя
+  .alcoholItems {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 колонки */
+    grid-template-rows: repeat(5, 1fr); /* 5 строк */
+    gap: 30px; /* Увеличиваем расстояние между элементами */
+    height: 100%;
+    width: 100%;
+}
+
+  
+
+  .alcoholItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    width: 100%;
+  }
+  
+
+
+  
+
+  
+  
+  

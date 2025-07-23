@@ -1,0 +1,67 @@
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ==== Фото + Информация о профиле ==== */
+.profileDetails {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.profileImage {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+.profileText {
+  font-size: 16px;
+  flex: 1;
+  min-width: 250px;
+}
+
+/* ==== Блок с действиями (кнопки) ==== */
+.profileText button {
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.profileText button:hover {
+  background-color: #0056b3;
+}
+
+.profileText button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* ==== Новостная лента ==== */
+.newsFeed {
+  background: #f4f4f4;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.newsFeed h2 {
+  margin-bottom: 10px;
+}
+
+.newsItem {
+  background: white;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

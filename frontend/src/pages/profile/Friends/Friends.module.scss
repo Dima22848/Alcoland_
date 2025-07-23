@@ -1,0 +1,224 @@
+.friendsContainer {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.tabButtons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+
+  button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #f0f0f0;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    opacity: 1 !important;
+    pointer-events: auto;
+  }
+
+  .activeTab {
+    background-color: #333;
+    color: white;
+  }
+
+  button:hover:not(.activeTab) {
+    background-color: #e0e0e0;
+  }
+}
+
+.friendsList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.friendCard {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+  gap: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+/* Кнопки в одну строку — для заявок в друзья */
+.friendActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-left: auto;
+
+  button {
+    padding: 6px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    color: white;
+    transition: background-color 0.2s ease;
+    opacity: 1 !important;
+    pointer-events: auto;
+  }
+
+  button:nth-child(1) {
+    background-color: #007bff; // Посмотреть профиль
+  }
+
+  button:nth-child(2) {
+    background-color: #28a745; // Принять
+  }
+
+  button:nth-child(3) {
+    background-color: #dc3545; // Отклонить
+  }
+
+  button:hover {
+    filter: brightness(1.1);
+  }
+}
+
+/* Кнопки в столбик — для друзей */
+.friendActionsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: auto;
+
+  button {
+    padding: 6px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    color: white;
+    transition: background-color 0.2s ease;
+    opacity: 1 !important;
+    pointer-events: auto;
+  }
+
+  button:nth-child(1) {
+    background-color: #007bff; // Посмотреть профиль
+  }
+
+  button:nth-child(2) {
+    background-color: #28a745; // Написать сообщение
+  }
+
+  button:nth-child(3) {
+    background-color: #dc3545; // Удалить
+  }
+
+  button:hover {
+    filter: brightness(1.1);
+  }
+}
+
+
+
+
+
+// .friendsContainer {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 20px;
+    
+//   }
+  
+//   h2 {
+//     text-align: center;
+//     font-size: 24px;
+//     font-weight: bold;
+//   }
+  
+//   .friendsList {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 15px;
+//   }
+  
+//   /* ==== Карточка друга ==== */
+//   .friendCard {
+//     display: flex;
+//     align-items: center;
+//     background: #f4f4f4;
+//     padding: 15px;
+//     border-radius: 8px;
+//     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+//     justify-content: space-between;
+//   }
+  
+//   /* ==== Фото + Имя ==== */
+//   .friendProfile {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//   }
+  
+//   .friendAvatar {
+//     width: 80px;
+//     height: 80px;
+//     border-radius: 50%;
+//     object-fit: cover;
+//   }
+  
+//   .friendName {
+//     font-size: 18px;
+//     font-weight: bold;
+//     margin-top: 8px;
+//   }
+  
+//   /* ==== Кнопки в столбик ==== */
+//   .friendActions {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-end;
+//     gap: 8px;
+//   }
+  
+//   .friendActions button {
+//     width: 160px;
+//     padding: 8px 12px;
+//     border: none;
+//     border-radius: 5px;
+//     cursor: pointer;
+//     font-size: 14px;
+//     transition: 0.3s;
+//   }
+  
+//   .viewProfile {
+//     background: #007bff;
+//     color: white;
+//   }
+  
+//   .sendMessage {
+//     background: #28a745;
+//     color: white;
+//   }
+  
+//   .removeFriend {
+//     background: #dc3545;
+//     color: white;
+//   }
+  
+//   .friendActions button:hover {
+//     opacity: 0.8;
+//   }
+  

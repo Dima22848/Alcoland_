@@ -1,0 +1,376 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #007bff;
+  margin-bottom: 15px;
+}
+.backButton:hover {
+  text-decoration: underline;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.image {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.price {
+  font-size: 20px;
+  font-weight: bold;
+}
+.volume {
+  font-size: 14px;
+  color: gray;
+}
+.addToCart {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.addToCart:hover {
+  background-color: #218838;
+}
+
+h2 {
+  margin-top: 20px;
+}
+
+.characteristics {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+}
+.characteristics p {
+  font-size: 14px;
+}
+
+.reviews {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Новый стиль отзывов */
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 14px;
+}
+
+.userWithRating {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  box-shadow: 0 2px 8px #0001;
+  background: #fafafa;
+}
+
+.userIcon {
+  font-size: 48px;
+  color: gray;
+}
+
+.userName {
+  font-weight: bold;
+  margin-bottom: 4px;
+  margin-top: 0;
+  word-break: break-all;
+}
+
+.reviewRating {
+  display: flex;
+  gap: 3px;
+}
+
+.starFilled {
+  color: gold;
+}
+
+.starEmpty {
+  color: lightgray;
+}
+
+.reviewContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.reviewText {
+  font-size: 15px;
+  margin-left: 62px; // чтобы текст шел строго под ником и аватаркой
+  margin-bottom: 4px;
+  margin-top: 0;
+  word-break: break-word;
+}
+
+.reviewDate {
+  font-size: 12px;
+  color: gray;
+  align-self: flex-end;
+  margin-right: 10px;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+.deleteBtn {
+  background: none;
+  border: none;
+  color: #d9534f;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 2px;
+  transition: color 0.15s;
+}
+.deleteBtn:hover {
+  color: #c82333;
+}
+
+.reviewButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.reviewButtons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.reviewButtons button:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+
+
+
+
+
+
+// .container { 
+//   max-width: 800px;
+//   margin: 0 auto;
+//   padding: 20px;
+// }
+
+// .backButton {
+//   display: flex;
+//   align-items: center;
+//   gap: 5px;
+//   background: none;
+//   border: none;
+//   font-size: 16px;
+//   cursor: pointer;
+//   color: #007bff;
+//   margin-bottom: 15px;
+// }
+
+// .backButton:hover {
+//   text-decoration: underline;
+// }
+
+// .content {
+//   display: flex;
+//   align-items: center;
+//   gap: 20px;
+// }
+
+// .image {
+//   width: 200px;
+//   height: auto;
+//   border-radius: 10px;
+// }
+
+// .details {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 10px;
+// }
+
+// .price {
+//   font-size: 20px;
+//   font-weight: bold;
+// }
+
+// .volume {
+//   font-size: 14px;
+//   color: gray;
+// }
+
+// .addToCart {
+//   background-color: #28a745;
+//   color: white;
+//   border: none;
+//   padding: 10px;
+//   cursor: pointer;
+//   border-radius: 5px;
+//   font-size: 16px;
+// }
+
+// .addToCart:hover {
+//   background-color: #218838;
+// }
+
+// h2 {
+//   margin-top: 20px;
+// }
+
+// .characteristics {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 5px;
+//   margin-top: 10px;
+// }
+
+// .characteristics p {
+//   font-size: 14px;
+// }
+
+// .reviews {
+//   margin-top: 20px;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 15px;
+// }
+
+// .review {
+//   display: flex;
+//   align-items: flex-start;
+//   gap: 10px;
+//   border-bottom: 1px solid #ddd;
+//   padding-bottom: 10px;
+// }
+
+// .userIcon {
+//   font-size: 32px;
+//   color: gray;
+// }
+
+// .avatar {
+//   width: 48px;
+//   height: 48px;
+//   border-radius: 50%;
+//   object-fit: cover;
+//   margin-right: 10px;
+//   box-shadow: 0 2px 8px #0001;
+//   background: #fafafa;
+// }
+
+// .reviewContent {
+//   flex: 1;
+// }
+
+// .reviewHeader {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+// }
+
+// .userName {
+//   font-weight: bold;
+//   margin-right: 10px;
+// }
+
+// .reviewRating {
+//   display: flex;
+//   gap: 3px;
+// }
+
+// .reviewDate {
+//   font-size: 12px;
+//   color: gray;
+// }
+
+// .starFilled {
+//   color: gold;
+// }
+
+// .starEmpty {
+//   color: lightgray;
+// }
+
+// .reviewText {
+//   font-size: 14px;
+// }
+
+// .reviewButtons {
+//   display: flex;
+//   justify-content: space-between;
+//   margin-top: 20px;
+// }
+
+// .reviewButtons button {
+//   background-color: #007bff;
+//   color: white;
+//   border: none;
+//   padding: 10px;
+//   cursor: pointer;
+//   border-radius: 5px;
+//   font-size: 16px;
+// }
+
+// .reviewButtons button:hover {
+//   background-color: #0056b3;
+// }
+
+// .userWithRating {
+//   display: flex;
+//   align-items: center;
+//   gap: 10px;
+//   min-width: 0;
+// }
+
+
+
+
+
+
+
+
+
