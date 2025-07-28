@@ -5,7 +5,7 @@
 -- Dumped from database version 17.2
 -- Dumped by pg_dump version 17.2
 
--- Started on 2025-07-23 18:04:54
+-- Started on 2025-07-28 13:37:59
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -992,8 +992,9 @@ COPY public.account_customuser (id, password, last_login, is_superuser, first_na
 19	pbkdf2_sha256$870000$zhmgYwKg2PhyCjeBGzukTA$QE54RuyB0Jvcn3TQNS59cn1FpQwfp5dnqEreQ/psyZw=	2025-02-26 10:30:54+02	t			t	t	2025-02-26 10:28:29+02	buhar22848	buhar22848@example.com	\N	lutsk	\N	\N		avatars/user_buhar22848/trololo_eXJ3uPa.jfif
 27	pbkdf2_sha256$870000$Ei7yDffCRhFVUgxoiGoZmT$PagF+gzdI5nssr/iQ2HihWkJj6hNzEFil3OpW+BVjYk=	\N	f			f	t	2025-02-26 10:41:43+02	flash228	flash228@gmail.com	\N	\N	\N	\N		avatars/user_flash228/fuck_BJrxaWU.jfif
 29	pbkdf2_sha256$870000$YkXxMzXJidiiFj60MYnFq2$3VVgBBTz+O0Q/fHFPkiTu0ustxlL6TGjhEabE46wyZM=	\N	f			f	t	2025-02-26 10:43:36+02	kitty546	kitty546@gmail.com	\N	\N	\N	\N		avatars/user_kitty546/e3fe6a14-5600-4250-bffd-e2427934ac46.jfif
-1	pbkdf2_sha256$870000$fIH7zx1ZnbuEhWJAE7iKJ5$tF7AUUSLm/HYpfLrCinmLY7ZjXBxsQ9+29ye35KH5CU=	2025-07-01 14:44:03.023449+03	t			t	t	2025-02-05 12:20:11+02	admin	4918bolia@ogasa.org.ua	\N	odesa	\N	\N		avatars/user_admin/worker.jfif
+1	pbkdf2_sha256$870000$fIH7zx1ZnbuEhWJAE7iKJ5$tF7AUUSLm/HYpfLrCinmLY7ZjXBxsQ9+29ye35KH5CU=	2025-07-28 12:19:46.330475+03	t			t	t	2025-02-05 12:20:11+02	admin	4918bolia@ogasa.org.ua	\N	odesa	\N	\N		
 21	pbkdf2_sha256$870000$TvFVMrQlawBxKZYWfSPOqn$zqTK0xUT1igy78zrT4yZEKiXDnSc36KWHRbUpzrYA8o=	\N	f	алина	Никифоровна	f	t	2025-02-26 10:32:13+02	milashka445	milashka445@gmail.com	22	kharkiv	Парикмахер123	Вышивание123	Я жизнерадостный человек, который любить хорошо выпить и классно провести время в кругу прекрасных людей, также люблю дарить позитив всем окружающим особенно тем кто меня любит. Когда я наливаю вино в свой бокал моя жизнь становится прекраснее и я забываю о всех моих проблемах и ухожу в нирвану ни о чем не думая. Буду рада новым знакомствам и совместным вечеринкам с бокалом в руках ))))	avatars/user_milashka445/7b3ff748-ef88-4051-8e72-f23722bc9ef4.jfif
+36	pbkdf2_sha256$870000$H5kc2oV3jaY4r101sTFxqz$1vh5Whl/na38TwfUbFC9RZ41DJJGmQPRAsmwrafVMvQ=	\N	f			f	t	2025-07-28 12:50:34.488216+03	pavel	pavel@gmail.com	\N		\N	\N	\N	
 \.
 
 
@@ -1724,6 +1725,8 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 386	2025-06-26 15:18:46.622913+03	4	Заказ #4 от milashka445 (draft)	2	[{"changed": {"name": "\\u0422\\u043e\\u0432\\u0430\\u0440 \\u0437\\u0430\\u043a\\u0430\\u0437\\u0430", "object": "\\u041f\\u0438\\u0432\\u043e \\u041e\\u043f\\u0456\\u043b\\u043b\\u044f \\u041a\\u043e\\u0440\\u0438\\u0444\\u0435\\u0439 (x2)", "fields": ["Object id"]}}]	21	1
 387	2025-06-28 14:41:17.943865+03	47	milashka445 at 2025-06-28 11:41:17.926999+00:00	2	[{"changed": {"fields": ["Content type"]}}]	16	1
 388	2025-06-28 14:44:07.376727+03	47	milashka445 at 2025-06-28 11:44:07.368727+00:00	2	[]	16	1
+389	2025-07-28 12:50:18.236958+03	35	pavel1	3		6	1
+390	2025-07-28 12:50:18.236958+03	34	pavel	3		6	1
 \.
 
 
@@ -1820,6 +1823,9 @@ ilqugx10eobp2t9l47hfgsrutgrin5aq	.eJxVjMEOwiAQRP-FsyHZZaXg0bvfQBYWpGpoUtqT8d9tkx
 q9e5enp8yja0f37l3rks91x5bsrun4m2	.eJxVjMEOwiAQRP-FsyHZZaXg0bvfQBYWpGpoUtqT8d9tkx40mdO8N_NWgdelhrXnOYyiLgrU6beLnJ657UAe3O6TTlNb5jHqXdEH7fo2SX5dD_fvoHKv2xpdYqDoELA4gS2QPUqhbDlS8pjKgCRMZC0RGTRsUjSeBjgbV7L6fAHbAzdt:1uMPWO:neacPMKNYIWWzYwh4spsaxaPiiuZKSmambeJ_nsiLjc	2025-06-17 14:09:32.466505+03
 234lrarx1oruhufao9n7kmxh0w73b6k0	.eJxVjMEOwiAQRP-FsyHZZaXg0bvfQBYWpGpoUtqT8d9tkx40mdO8N_NWgdelhrXnOYyiLgrU6beLnJ657UAe3O6TTlNb5jHqXdEH7fo2SX5dD_fvoHKv2xpdYqDoELA4gS2QPUqhbDlS8pjKgCRMZC0RGTRsUjSeBjgbV7L6fAHbAzdt:1uR7GS:92odMqdhlsE2SmBw6Hzs_2F4E7zSM7K5VVPBrSmZKTI	2025-06-30 13:40:32.14425+03
 62vp48dlegozk6yo0skgpnh1ts1p4xiq	.eJxVjMEOwiAQRP-FsyHZZaXg0bvfQBYWpGpoUtqT8d9tkx40mdO8N_NWgdelhrXnOYyiLgrU6beLnJ657UAe3O6TTlNb5jHqXdEH7fo2SX5dD_fvoHKv2xpdYqDoELA4gS2QPUqhbDlS8pjKgCRMZC0RGTRsUjSeBjgbV7L6fAHbAzdt:1uWZP9:h2Z02ye6tje03y-5odLw7kAd0KDaJJ4KqAkxTyXLpu0	2025-07-15 14:44:03.129176+03
+5l61sce8olhypezn01czaz87wjitbsll	e30:1ugJp4:HcMgigcLOBiJ58NihWdRduthn79BFzUh9p0M5VqW6DA	2025-08-11 12:07:06.705569+03
+dih9k79mpbf2qoxm5fcnhik33y5khehx	e30:1ugJpI:ZlsRHmGaPKOrZhgOSQd2A3U-cx1O9bg7htfchyRgROk	2025-08-11 12:07:20.442061+03
+zyymhfw3dsvbnf78jeqjizklgi4gejqn	.eJxVjMEOwiAQRP-FsyHZZaXg0bvfQBYWpGpoUtqT8d9tkx40mdO8N_NWgdelhrXnOYyiLgrU6beLnJ657UAe3O6TTlNb5jHqXdEH7fo2SX5dD_fvoHKv2xpdYqDoELA4gS2QPUqhbDlS8pjKgCRMZC0RGTRsUjSeBjgbV7L6fAHbAzdt:1ugK1K:Bwgwh9piv8VQik6NWOjqAKNk-QTwmhCjkucIorNjM0g	2025-08-11 12:19:46.333601+03
 \.
 
 
@@ -2099,7 +2105,7 @@ SELECT pg_catalog.setval('public.account_customuser_groups_id_seq', 1, false);
 -- Name: account_customuser_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.account_customuser_id_seq', 33, true);
+SELECT pg_catalog.setval('public.account_customuser_id_seq', 36, true);
 
 
 --
@@ -2225,7 +2231,7 @@ SELECT pg_catalog.setval('public.chat_message_id_seq', 66, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 388, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 390, true);
 
 
 --
@@ -3490,7 +3496,7 @@ ALTER TABLE ONLY public.main_vodka
     ADD CONSTRAINT main_vodka_alcoholtype_id_b1827ff0_fk_main_alcoholtype_id FOREIGN KEY (alcoholtype_id) REFERENCES public.main_alcoholtype(id) DEFERRABLE INITIALLY DEFERRED;
 
 
--- Completed on 2025-07-23 18:04:55
+-- Completed on 2025-07-28 13:37:59
 
 --
 -- PostgreSQL database dump complete

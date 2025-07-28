@@ -35,9 +35,11 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
-    friends = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all(), many=True)
-    following = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all(), many=True)
-    followers = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all(), many=True)
+    password = serializers.CharField(write_only=True)
+    friends = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all(), many=True, required=False)
+    following = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all(), many=True, required=False)
+    followers = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all(), many=True, required=False)
+    nickname = serializers.CharField(required=False, allow_blank=True)
     city_display = serializers.CharField(source="get_city_display", read_only=True)
     ignored_requests = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     image = serializers.ImageField(read_only=True)
@@ -45,6 +47,22 @@ class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         exclude = ("city",)
+
+    def create(self, validated_data):
+        email = validated_data.get('email')
+        password = validated_data.pop('password')
+
+        if email and 'nickname' not in validated_data:
+            validated_data['nickname'] = email.split('@')[0]
+
+        validated_data.pop('friends', None)
+        validated_data.pop('followers', None)
+        validated_data.pop('following', None)
+
+        user = CustomUser(**validated_data)
+        user.set_password(password)
+        user.save()
+        return user
 
     def update(self, instance, validated_data):
         # 🛡️ Защита от повторной обработки upload_to
