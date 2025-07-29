@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
-import { selectUser } from "../../../redux/slices/auth/authSlice";
+import { selectUser} from "../../../redux/slices/auth/authSlice";
 import { useGetNewsfeedQuery } from "../../../redux/api/account/newsFeedApi";
+
 import NewsFeedItem from "../NewsFeed/NewsFeedItem";
 import styles from "./Profile.module.scss";
 

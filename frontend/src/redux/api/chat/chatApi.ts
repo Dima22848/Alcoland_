@@ -1,6 +1,5 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-const token = localStorage.getItem("access_token");
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQueryWithReauth } from "../baseApi"; // путь к обёртке как в newsFeedApi.ts
 
 export interface ChatParticipant {
   id: number;
@@ -30,25 +29,17 @@ export interface Chat {
 
 export const chatApi = createApi({
   reducerPath: "chatApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "http://127.0.0.1:8000/api",
-    prepareHeaders: (headers) => {
-      if (token) headers.set("Authorization", `Bearer ${token}`);
-      return headers;
-    },
-  }),
+  baseQuery: baseQueryWithReauth,
   tagTypes: ["Chats", "Participants"],
   endpoints: (builder) => ({
     getChats: builder.query<Chat[], void>({
       query: () => "/chats/",
       providesTags: ["Chats"],
     }),
-
     getChatById: builder.query<Chat, string | number>({
       query: (chatId) => `/chats/${chatId}/`,
       providesTags: ["Chats"],
     }),
-
     createGroupChat: builder.mutation<any, FormData>({
       query: (formData) => ({
         url: `/chats/`,
@@ -57,7 +48,6 @@ export const chatApi = createApi({
       }),
       invalidatesTags: ["Chats"],
     }),
-
     fetchOrCreateChatWithNickname: builder.mutation<Chat, string>({
       query: (nickname) => ({
         url: `/chats/with-nickname/${nickname}/`,
@@ -65,7 +55,6 @@ export const chatApi = createApi({
       }),
       invalidatesTags: ["Chats"],
     }),
-
     editChatName: builder.mutation<void, { chatId: number; name: string }>({
       query: ({ chatId, name }) => ({
         url: `/chats/${chatId}/`,
@@ -74,7 +63,6 @@ export const chatApi = createApi({
       }),
       invalidatesTags: ["Chats"],
     }),
-
     updateChatAvatar: builder.mutation<void, { chatId: number; formData: FormData }>({
       query: ({ chatId, formData }) => ({
         url: `/chats/${chatId}/`,
@@ -83,7 +71,6 @@ export const chatApi = createApi({
       }),
       invalidatesTags: ["Chats"],
     }),
-
     inviteToChat: builder.mutation<void, { chatId: number; nickname: string }>({
       query: ({ chatId, nickname }) => ({
         url: `/chats/${chatId}/invite/`,
@@ -92,8 +79,6 @@ export const chatApi = createApi({
       }),
       invalidatesTags: ["Participants"],
     }),
-
-    // Новый эндпоинт: "Скрыть чат у себя"
     hideChatForMe: builder.mutation<{ status: string }, number>({
       query: (chatId) => ({
         url: `/chats/${chatId}/hide_for_me/`,
@@ -101,7 +86,6 @@ export const chatApi = createApi({
       }),
       invalidatesTags: ["Chats"],
     }),
-
     deleteChat: builder.mutation<void, number>({
       query: (chatId) => ({
         url: `/chats/${chatId}/`,
@@ -109,12 +93,10 @@ export const chatApi = createApi({
       }),
       invalidatesTags: ["Chats"],
     }),
-
     getParticipants: builder.query<ChatParticipant[], number>({
       query: (chatId) => `/chats/${chatId}/participants/`,
       providesTags: ["Participants"],
     }),
-
     removeParticipant: builder.mutation<void, { chatId: number; userId: number }>({
       query: ({ chatId, userId }) => ({
         url: `/chats/${chatId}/remove_participant/`,
@@ -123,7 +105,6 @@ export const chatApi = createApi({
       }),
       invalidatesTags: ["Participants"],
     }),
-
     makeAdmin: builder.mutation<void, { chatId: number; userId: number }>({
       query: ({ chatId, userId }) => ({
         url: `/chats/${chatId}/make_admin/`,
@@ -132,7 +113,6 @@ export const chatApi = createApi({
       }),
       invalidatesTags: ["Participants"],
     }),
-
     revokeAdmin: builder.mutation<void, { chatId: number; userId: number }>({
       query: ({ chatId, userId }) => ({
         url: `/chats/${chatId}/revoke_admin/`,
@@ -151,7 +131,7 @@ export const {
   useUpdateChatAvatarMutation,
   useInviteToChatMutation,
   useDeleteChatMutation,
-  useHideChatForMeMutation,        
+  useHideChatForMeMutation,
   useGetParticipantsQuery,
   useRemoveParticipantMutation,
   useMakeAdminMutation,
@@ -161,6 +141,7 @@ export const {
 } = chatApi;
 
 export default chatApi;
+
 
 
 
@@ -182,7 +163,6 @@ export default chatApi;
 //   avatar?: string | null;
 // }
 
-
 // export interface Chat {
 //   id: number;
 //   is_group: boolean;
@@ -201,7 +181,6 @@ export default chatApi;
 //   display_name?: string;
 //   display_image?: string;
 // }
-
 
 // export const chatApi = createApi({
 //   reducerPath: "chatApi",
@@ -222,6 +201,15 @@ export default chatApi;
 //     getChatById: builder.query<Chat, string | number>({
 //       query: (chatId) => `/chats/${chatId}/`,
 //       providesTags: ["Chats"],
+//     }),
+
+//     createGroupChat: builder.mutation<any, FormData>({
+//       query: (formData) => ({
+//         url: `/chats/`,
+//         method: "POST",
+//         body: formData,
+//       }),
+//       invalidatesTags: ["Chats"],
 //     }),
 
 //     fetchOrCreateChatWithNickname: builder.mutation<Chat, string>({
@@ -257,6 +245,15 @@ export default chatApi;
 //         body: { nickname },
 //       }),
 //       invalidatesTags: ["Participants"],
+//     }),
+
+//     // Новый эндпоинт: "Скрыть чат у себя"
+//     hideChatForMe: builder.mutation<{ status: string }, number>({
+//       query: (chatId) => ({
+//         url: `/chats/${chatId}/hide_for_me/`,
+//         method: "POST",
+//       }),
+//       invalidatesTags: ["Chats"],
 //     }),
 
 //     deleteChat: builder.mutation<void, number>({
@@ -308,14 +305,21 @@ export default chatApi;
 //   useUpdateChatAvatarMutation,
 //   useInviteToChatMutation,
 //   useDeleteChatMutation,
+//   useHideChatForMeMutation,        
 //   useGetParticipantsQuery,
 //   useRemoveParticipantMutation,
 //   useMakeAdminMutation,
 //   useRevokeAdminMutation,
 //   useFetchOrCreateChatWithNicknameMutation,
+//   useCreateGroupChatMutation,
 // } = chatApi;
 
 // export default chatApi;
+
+
+
+
+
 
 
 
