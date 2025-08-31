@@ -83,7 +83,7 @@ const Register = () => {
               required
             />
           </div>
-
+          <Link to="/login" style={{ color: "black", fontSize: "20px" }}>Войти</Link>
           {/* Кнопка для регистрации */}
           <button type="submit" className={styles.submitButton}>
             Зарегистрироваться
@@ -91,7 +91,7 @@ const Register = () => {
         </form>
 
         {/* Вход через соцсети */}
-        <div className={styles.socialLogin}>
+        {/* <div className={styles.socialLogin}>
           <h2>Зарегистрироваться через</h2>
           <div className={styles.socialButtons}>
             <button className={styles.socialButton}>
@@ -103,7 +103,7 @@ const Register = () => {
               Facebook
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

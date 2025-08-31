@@ -39,7 +39,7 @@ const Login = () => {
       <nav className={styles.header}>
         <div className={styles.navbarLeft}>
           <Link to="/">Alcoland</Link>
-          <Link to="/support">Поддержка</Link>
+          {/* <Link to="/support">Поддержка</Link> */}
         </div>
         <div className={styles.navbarRight}>
           <div>Корзина</div>
@@ -82,8 +82,8 @@ const Login = () => {
 
           {/* Ссылки */}
           <div className={styles.links}>
-            <Link to="/forgot-password">Забыли пароль?</Link>
-            <Link to="/register">Регистрация</Link>
+            {/* <Link to="/forgot-password">Забыли пароль?</Link> */}
+            <Link to="/register" style={{ color: "black" }}>Регистрация</Link>
           </div>
 
           {/* Кнопка для входа */}
@@ -93,7 +93,7 @@ const Login = () => {
         </form>
 
         {/* Вход через соцсети */}
-        <div className={styles.socialLogin}>
+        {/* <div className={styles.socialLogin}>
           <h2>Войти через</h2>
           <div className={styles.socialButtons}>
             <button className={styles.socialButton}>
@@ -105,7 +105,7 @@ const Login = () => {
               Facebook
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

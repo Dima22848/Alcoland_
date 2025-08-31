@@ -26,7 +26,7 @@ const ProfileLayout = () => {
             <li><Link to="/profile/basket">Моя корзина</Link></li>
             <li><Link to="/profile/buy-history">Моя история покупок</Link></li>
             <li><Link to="/profile/settings">Мои настройки</Link></li>
-            <li><Link to="/catalog">Каталог алкоголя</Link></li>
+            <li><Link to="/">Каталог алкоголя</Link></li>
             <li><Link to="/logout">Выйти</Link></li>
           </ul>
         </aside>

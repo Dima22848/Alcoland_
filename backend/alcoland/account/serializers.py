@@ -3,7 +3,7 @@ from django.contrib.auth import password_validation
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .models import CustomUser, NewsFeed, NewsFeedComments
+from .models import CustomUser, NewsFeed, NewsFeedComments,  CITY_CHOICES
 
 class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField(required=True)
@@ -42,11 +42,13 @@ class CustomUserSerializer(serializers.ModelSerializer):
     nickname = serializers.CharField(required=False, allow_blank=True)
     city_display = serializers.CharField(source="get_city_display", read_only=True)
     ignored_requests = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    image = serializers.ImageField(read_only=True)
+    image = serializers.ImageField(required=False)
+    city = serializers.ChoiceField(choices=CITY_CHOICES, required=False, allow_blank=True)
+    favorite_alcohol = serializers.CharField(required=False, allow_blank=True)
 
     class Meta:
         model = CustomUser
-        exclude = ("city",)
+        fields = "__all__"
 
     def create(self, validated_data):
         email = validated_data.get('email')
@@ -79,29 +81,94 @@ class CustomUserSerializer(serializers.ModelSerializer):
         return instance
 
 
-
-class NewsFeedSerializer(serializers.ModelSerializer):
-    profile_id = serializers.SerializerMethodField()
-
-    class Meta:
-        model = NewsFeed
-        fields = ['id', 'profile_id', 'text', 'file', 'created_at']
-
-    def get_profile_id(self, obj):
-        return obj.profile.id
-
 class NewsFeedCommentsSerializer(serializers.ModelSerializer):
-    profile_id = serializers.ReadOnlyField(source='profile.id')
-    newsfeed_id = serializers.ReadOnlyField(source='newsfeed.id')
+    profile_id = serializers.ReadOnlyField(source="profile.id")
+    newsfeed_id = serializers.ReadOnlyField(source="newsfeed.id")
+
+    is_liked_by_me = serializers.SerializerMethodField()
+    is_disliked_by_me = serializers.SerializerMethodField()
+
+    likes_count = serializers.IntegerField(read_only=True)
+    dislikes_count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = NewsFeedComments
-        fields = ['id', 'profile_id', 'newsfeed_id', 'text', 'created_at']
+        fields = [
+            "id",
+            "profile_id",
+            "newsfeed_id",
+            "text",
+            "created_at",
+            "likes_count",
+            "dislikes_count",
+            "is_liked_by_me",
+            "is_disliked_by_me",
+        ]
+
+    def get_is_liked_by_me(self, obj):
+        user = self.context["request"].user
+        if user.is_anonymous:
+            return False
+        return obj.reactions.filter(user=user, reaction="like").exists()
+
+    def get_is_disliked_by_me(self, obj):
+        user = self.context["request"].user
+        if user.is_anonymous:
+            return False
+        return obj.reactions.filter(user=user, reaction="dislike").exists()
 
     def create(self, validated_data):
         request = self.context.get("request")
-        profile = request.user  # Получаем текущего пользователя
-        newsfeed_id = self.initial_data.get("newsfeed_id")  # Получаем ID из запроса
-        newsfeed = NewsFeed.objects.get(id=newsfeed_id)  # Получаем объект NewsFeed
+        profile = getattr(request.user, "profile", request.user)  # фикс: если у тебя есть Profile
+        newsfeed_id = self.initial_data.get("newsfeed_id")
+        newsfeed = NewsFeed.objects.get(id=newsfeed_id)
         return NewsFeedComments.objects.create(profile=profile, newsfeed=newsfeed, **validated_data)
 
+
+class NewsFeedSerializer(serializers.ModelSerializer):
+    profile_id = serializers.ReadOnlyField(source="profile.id")
+
+    is_liked_by_me = serializers.SerializerMethodField()
+    is_disliked_by_me = serializers.SerializerMethodField()
+
+    likes_count = serializers.IntegerField(read_only=True)
+    dislikes_count = serializers.IntegerField(read_only=True)
+
+    # 👇 добавляем связанные комментарии
+    comments = NewsFeedCommentsSerializer(
+        many=True,
+        read_only=True,
+        source="newsfeedcomments_set"  # если в модели нет related_name
+    )
+
+    class Meta:
+        model = NewsFeed
+        fields = [
+            "id",
+            "profile_id",
+            "text",
+            "file",
+            "created_at",
+            "likes_count",
+            "dislikes_count",
+            "is_liked_by_me",
+            "is_disliked_by_me",
+            "comments",  # обязательно включаем
+        ]
+
+    def get_is_liked_by_me(self, obj):
+        user = self.context["request"].user
+        if user.is_anonymous:
+            return False
+        return obj.reactions.filter(user=user, reaction="like").exists()
+
+    def get_is_disliked_by_me(self, obj):
+        user = self.context["request"].user
+        if user.is_anonymous:
+            return False
+        return obj.reactions.filter(user=user, reaction="dislike").exists()
+
+    def create(self, validated_data):
+        request = self.context.get("request")
+        profile = getattr(request.user, "profile", request.user)  # фикс
+        return NewsFeed.objects.create(profile=profile, **validated_data)

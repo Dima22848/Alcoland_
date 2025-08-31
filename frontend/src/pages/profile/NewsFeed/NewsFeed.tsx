@@ -12,6 +12,10 @@ interface Post {
   text: string;
   file: string | null;
   created_at: string;
+  likes_count: number;
+  dislikes_count: number;
+  is_liked_by_me: boolean;
+  is_disliked_by_me: boolean;
 }
 
 interface User {

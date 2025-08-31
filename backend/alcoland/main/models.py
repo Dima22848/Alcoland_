@@ -1,3 +1,5 @@
+from email.policy import default
+
 from django.utils.text import slugify
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
@@ -13,7 +15,7 @@ class Reviews(models.Model):
     text = models.TextField(verbose_name='Отзыв')
     created_at = models.DateTimeField(verbose_name='Дата создания', auto_now=True)
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name='user_reviews')
-    rate = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
+    rate = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
 
     # добавляем GenericForeignKey для связи с любым типом алкоголя
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)

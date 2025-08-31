@@ -8,11 +8,14 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .serializers import CustomTokenObtainPairSerializer, ChangePasswordSerializer
 from rest_framework.decorators import api_view, permission_classes
 
-from .models import CustomUser, NewsFeed, NewsFeedComments
+from .models import CustomUser, NewsFeed, NewsFeedComments, NewsFeedReaction, CommentReaction
 from .serializers import CustomUserSerializer, NewsFeedSerializer, NewsFeedCommentsSerializer
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
+from django.db.models import Count, Q
+
+
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
@@ -160,11 +163,58 @@ class NewsFeedViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        queryset = NewsFeed.objects.all()
-        profile_id = self.request.query_params.get('profile')
+        queryset = NewsFeed.objects.all().annotate(
+            likes_count=Count("reactions", filter=Q(reactions__reaction="like")),
+            dislikes_count=Count("reactions", filter=Q(reactions__reaction="dislike")),
+        ).prefetch_related("reactions")
+
+        profile_id = self.request.query_params.get("profile")
         if profile_id:
             queryset = queryset.filter(profile_id=profile_id)
         return queryset
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context.update({"request": self.request})
+        return context
+
+    # 👍 Лайк
+    @action(detail=True, methods=["post"])
+    def like(self, request, pk=None):
+        newsfeed = self.get_object()
+        user = request.user
+        reaction, created = NewsFeedReaction.objects.get_or_create(
+            user=user, newsfeed=newsfeed,
+            defaults={"reaction": NewsFeedReaction.LIKE}
+        )
+
+        if not created:
+            if reaction.reaction == NewsFeedReaction.LIKE:
+                reaction.delete()
+                return Response({"status": "Лайк удалён"})
+            reaction.reaction = NewsFeedReaction.LIKE
+            reaction.save()
+            return Response({"status": "Обновлено на лайк"})
+        return Response({"status": "Поставлен лайк"})
+
+    # 👎 Дизлайк
+    @action(detail=True, methods=["post"])
+    def dislike(self, request, pk=None):
+        newsfeed = self.get_object()
+        user = request.user
+        reaction, created = NewsFeedReaction.objects.get_or_create(
+            user=user, newsfeed=newsfeed,
+            defaults={"reaction": NewsFeedReaction.DISLIKE}
+        )
+
+        if not created:
+            if reaction.reaction == NewsFeedReaction.DISLIKE:
+                reaction.delete()
+                return Response({"status": "Дизлайк удалён"})
+            reaction.reaction = NewsFeedReaction.DISLIKE
+            reaction.save()
+            return Response({"status": "Обновлено на дизлайк"})
+        return Response({"status": "Поставлен дизлайк"})
 
 
 class NewsFeedCommentsViewSet(viewsets.ModelViewSet):
@@ -173,13 +223,55 @@ class NewsFeedCommentsViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        queryset = NewsFeedComments.objects.all()
-        newsfeed_id = self.request.query_params.get('newsfeed')
+        queryset = NewsFeedComments.objects.all().annotate(
+            likes_count=Count("reactions", filter=Q(reactions__reaction="like")),
+            dislikes_count=Count("reactions", filter=Q(reactions__reaction="dislike")),
+        ).prefetch_related("reactions")
+
+        newsfeed_id = self.request.query_params.get("newsfeed")
         if newsfeed_id:
             queryset = queryset.filter(newsfeed_id=newsfeed_id)
         return queryset
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
-        context["request"] = self.request  # Передаем request в сериализатор
+        context.update({"request": self.request})
         return context
+
+    # 👍 Лайк
+    @action(detail=True, methods=["post"])
+    def like(self, request, pk=None):
+        comment = self.get_object()
+        user = request.user
+        reaction, created = CommentReaction.objects.get_or_create(
+            user=user, comment=comment,
+            defaults={"reaction": CommentReaction.LIKE}
+        )
+
+        if not created:
+            if reaction.reaction == CommentReaction.LIKE:
+                reaction.delete()
+                return Response({"status": "Лайк удалён"})
+            reaction.reaction = CommentReaction.LIKE
+            reaction.save()
+            return Response({"status": "Обновлено на лайк"})
+        return Response({"status": "Поставлен лайк"})
+
+    # 👎 Дизлайк
+    @action(detail=True, methods=["post"])
+    def dislike(self, request, pk=None):
+        comment = self.get_object()
+        user = request.user
+        reaction, created = CommentReaction.objects.get_or_create(
+            user=user, comment=comment,
+            defaults={"reaction": CommentReaction.DISLIKE}
+        )
+
+        if not created:
+            if reaction.reaction == CommentReaction.DISLIKE:
+                reaction.delete()
+                return Response({"status": "Дизлайк удалён"})
+            reaction.reaction = CommentReaction.DISLIKE
+            reaction.save()
+            return Response({"status": "Обновлено на дизлайк"})
+        return Response({"status": "Поставлен дизлайк"})

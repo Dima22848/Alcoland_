@@ -6,7 +6,12 @@ interface NewsFeedComment {
   newsfeed_id: number;
   text: string;
   created_at: string;
+  likes_count: number;          
+  dislikes_count: number;       
+  is_liked_by_me: boolean;      
+  is_disliked_by_me: boolean;  
 }
+
 
 export const newsFeedCommentsApi = createApi({
   reducerPath: 'newsFeedCommentsApi',
@@ -25,20 +30,45 @@ export const newsFeedCommentsApi = createApi({
       query: (newsfeed_id) => `comments/?newsfeed=${newsfeed_id}`,
     }),
     createComment: builder.mutation<NewsFeedComment, Partial<NewsFeedComment>>({
-      query: (newComment) => {
-        console.log("Запрос к API:", newComment); // ← Проверь, передаётся ли newsfeed_id
-        return {
-          url: 'comments/',
-          method: 'POST',
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newComment),
-        };
-      },
-    }),    
+      query: (newComment) => ({
+        url: 'comments/',
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newComment),
+      }),
+    }),
+    deleteComment: builder.mutation<{ success: boolean }, number>({
+      query: (commentId) => ({
+        url: `comments/${commentId}/`,
+        method: 'DELETE',
+      }),
+    }),
+    likeComment: builder.mutation<{ status: string }, number>({
+      query: (commentId) => ({
+        url: `comments/${commentId}/like/`,
+        method: "POST",
+      }),
+    }),
+    dislikeComment: builder.mutation<{ status: string }, number>({
+      query: (commentId) => ({
+        url: `comments/${commentId}/dislike/`,
+        method: "POST",
+      }),
+    }),
   }),
 });
 
-export const { useGetCommentsByNewsFeedIdQuery, useCreateCommentMutation } = newsFeedCommentsApi;
+export const { 
+  useGetCommentsByNewsFeedIdQuery, 
+  useCreateCommentMutation, 
+  useDeleteCommentMutation,
+  useLikeCommentMutation,
+  useDislikeCommentMutation 
+} = newsFeedCommentsApi;
+
+
+
+
 
 
 
@@ -71,14 +101,23 @@ export const { useGetCommentsByNewsFeedIdQuery, useCreateCommentMutation } = new
 //     getCommentsByNewsFeedId: builder.query<NewsFeedComment[], number>({
 //       query: (newsfeed_id) => `comments/?newsfeed=${newsfeed_id}`,
 //     }),
-//     addComment: builder.mutation<NewsFeedComment, Partial<NewsFeedComment>>({
-//       query: (newComment) => ({
-//         url: 'comments/',
-//         method: 'POST',
-//         body: newComment,
-//       }),
-//     }),
+//     createComment: builder.mutation<NewsFeedComment, Partial<NewsFeedComment>>({
+//       query: (newComment) => {
+//         console.log("Запрос к API:", newComment); // ← Проверь, передаётся ли newsfeed_id
+//         return {
+//           url: 'comments/',
+//           method: 'POST',
+//           headers: { "Content-Type": "application/json" },
+//           body: JSON.stringify(newComment),
+//         };
+//       },
+//     }),    
 //   }),
 // });
 
-// export const { useGetCommentsByNewsFeedIdQuery, useAddCommentMutation } = newsFeedCommentsApi;
+// export const { useGetCommentsByNewsFeedIdQuery, useCreateCommentMutation } = newsFeedCommentsApi;
+
+
+
+
+

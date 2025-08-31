@@ -2,12 +2,16 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithReauth } from '../baseApi';
 
 // Интерфейс для каждого поста
-interface Post {
+export interface Post {
   id: number;
   profile_id: number;
   text: string;
   file: string | null;
   created_at: string;
+  likes_count: number;
+  dislikes_count: number;
+  is_liked_by_me: boolean;
+  is_disliked_by_me: boolean;
 }
 
 export const newsFeedApi = createApi({
@@ -20,10 +24,43 @@ export const newsFeedApi = createApi({
     getNewsfeedByProfile: builder.query<Post[], number>({
       query: (profileId) => `newsfeed/?profile=${profileId}`,
     }),
+    createPost: builder.mutation<Post, FormData>({
+      query: (formData) => ({
+        url: 'newsfeed/',
+        method: 'POST',
+        body: formData,
+      }),
+    }),
+    deletePost: builder.mutation<{ success: boolean; id: number }, number>({
+      query: (postId) => ({
+        url: `newsfeed/${postId}/`,
+        method: "DELETE",
+      }),
+    }),
+    likePost: builder.mutation<{ status: string }, number>({
+      query: (postId) => ({
+        url: `newsfeed/${postId}/like/`,
+        method: "POST",
+      }),
+    }),
+    dislikePost: builder.mutation<{ status: string }, number>({
+      query: (postId) => ({
+        url: `newsfeed/${postId}/dislike/`,
+        method: "POST",
+      }),
+    }),
   }),
 });
 
-export const { useGetNewsfeedQuery, useGetNewsfeedByProfileQuery } = newsFeedApi;
+export const { 
+  useGetNewsfeedQuery, 
+  useGetNewsfeedByProfileQuery, 
+  useCreatePostMutation, 
+  useDeletePostMutation,
+  useLikePostMutation,
+  useDislikePostMutation
+} = newsFeedApi;
+
 
 
 

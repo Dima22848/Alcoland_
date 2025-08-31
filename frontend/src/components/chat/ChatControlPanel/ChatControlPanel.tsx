@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import {
@@ -33,14 +33,22 @@ const ChatControlPanel: React.FC<ChatControlPanelProps> = ({ chatId }) => {
   const currentUser = useSelector((state: RootState) => state.auth.user);
   const navigate = useNavigate();
 
-  if (!chat || !participants) return <div>Загрузка...</div>;
+  
 
-  const isGroupChat = chat.is_group || (chat.participants?.length > 2);
-  const currentParticipant = participants.find(
+  const isGroupChat = chat?.is_group || (chat?.participants?.length ?? 0) > 2;
+  const currentParticipant = participants?.find(
     (p) => currentUser && p.id === currentUser.id
   );
   const isCreator = currentParticipant?.role === "creator";
   const isAdmin = isCreator || currentParticipant?.role === "admin";
+
+  useEffect(() => {
+    if (!isGroupChat) {
+      setShowParticipants(false);
+    }
+  }, [chatId, isGroupChat]);
+
+  if (!chat || !participants) return <div>Загрузка...</div>;
 
   const handleEditName = async () => {
     if (newName.trim()) {

@@ -70,7 +70,7 @@ const Layout = () => {
       <nav className={styles.header}>
         <div className={styles.navbarLeft}>
           <Link to="/">Alcoland</Link>
-          <Link to="/support">Поддержка</Link>
+          {/* <Link to="/support">Поддержка</Link> */}
         </div>
         <div className={styles.navbarRight}>
           {/* Корзина — BasketDropdown */}
@@ -100,14 +100,14 @@ const Layout = () => {
         <Outlet />
       </div>
 
-      <div className={styles.recommendations}>
+      {/* <div className={styles.recommendations}>
         <h3>Рекомендации</h3>
         <div className={styles.recommendItems}>
           <div className={styles.recommendItem}>Item 1</div>
           <div className={styles.recommendItem}>Item 2</div>
           <div className={styles.recommendItem}>Item 3</div>
         </div>
-      </div>
+      </div> */}
 
       {/* ========== МОДАЛКА ПОЛНОЙ КОРЗИНЫ ========== */}
       <Modal

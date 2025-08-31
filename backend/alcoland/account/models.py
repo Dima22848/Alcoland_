@@ -146,6 +146,7 @@ class CustomUser(AbstractUser):
     profession = models.CharField(max_length=100, blank=True, null=True, verbose_name='Профессия')
     hobby = models.CharField(max_length=100, blank=True, null=True, verbose_name='Хобби')
     extra_info = models.TextField(blank=True, null=True, verbose_name='Побольше о себе')
+    favorite_alcohol = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Аккаунт'
@@ -167,6 +168,7 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.nickname
+
 
 class NewsFeed(models.Model):
     text = models.TextField(verbose_name='Текст')
@@ -194,3 +196,63 @@ class NewsFeedComments(models.Model):
 
     def __str__(self):
         return f'{self.profile} at {self.created_at} in new {self.newsfeed}'
+
+
+class NewsFeedReaction(models.Model):
+    LIKE = 'like'
+    DISLIKE = 'dislike'
+    REACTION_CHOICES = [
+        (LIKE, 'Нравится'),
+        (DISLIKE, 'Не нравится'),
+    ]
+
+    user = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name="reactions"
+    )
+    newsfeed = models.ForeignKey(
+        NewsFeed,
+        on_delete=models.CASCADE,
+        related_name="reactions"
+    )
+    reaction = models.CharField(max_length=10, choices=REACTION_CHOICES)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Реакция на пост"
+        verbose_name_plural = "Реакции на посты"
+        unique_together = ("user", "newsfeed")  # 🔥 Один пользователь = одна реакция на пост
+
+    def __str__(self):
+        return f"{self.user.nickname} -> {self.reaction} ({self.newsfeed.id})"
+
+
+class CommentReaction(models.Model):
+    LIKE = "like"
+    DISLIKE = "dislike"
+    REACTION_CHOICES = [
+        (LIKE, "Like"),
+        (DISLIKE, "Dislike"),
+    ]
+
+    comment = models.ForeignKey(
+        "NewsFeedComments",
+        related_name="reactions",
+        on_delete=models.CASCADE
+    )
+    user = models.ForeignKey(
+        "CustomUser",
+        related_name="comment_reactions",
+        on_delete=models.CASCADE
+    )
+    reaction = models.CharField(max_length=10, choices=REACTION_CHOICES)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("comment", "user")  # один юзер = одна реакция
+
+    def __str__(self):
+        return f"{self.user} → {self.comment.id} ({self.reaction})"
